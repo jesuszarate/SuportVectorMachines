@@ -1,0 +1,80 @@
+\documentclass[12pt, fullpage,letterpaper]{article}
+
+\usepackage[margin=1in]{geometry}
+\usepackage{url}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{xspace}
+\usepackage{graphicx}
+
+\newcommand{\semester}{Spring 2018}
+\newcommand{\assignmentId}{4}
+\newcommand{\releaseDate}{11 April, 2018}
+\newcommand{\dueDate}{23 April, 2018}
+
+\newcommand{\bx}{{\bf x}}
+\newcommand{\bw}{{\bf w}}
+
+\title{CS 5350/6350: Machine Learining \semester}
+\author{Homework \assignmentId}
+\date{Handed out: \releaseDate\\
+  Due date: \dueDate}
+
+\begin{document}
+\maketitle
+
+\input{emacscomm}
+\input{general-instructions}
+
+
+\section{VC dimension}
+\begin{enumerate}
+\item~[25] Suppose we have a finite hypothesis space $\Hcal$.
+\begin{enumerate}
+\item~[10] Suppose $|\Hcal| = 2^{10}$. What is the VC dimension of $\Hcal$? 
+\item~[15] Generally, for  any finite $\Hcal$, what is $\mathrm{VC}(\Hcal)$ ?
+\end{enumerate}
+\item~[25] Prove that linear classifiers in a plane cannot shatter any $4$ distinct points. 
+\item~[20] Consider our infinite hypothesis space $\Hcal$ are all rectangles in a plain. Each rectangle corresponds to a classifier --- all the points inside the rectangle are classified as positive, and otherwise classified as negative. What is $\mathrm{VC}(\Hcal)$? 
+\end{enumerate}
+
+\section{Support Vector Machines}
+\begin{enumerate}
+\item~[20 points] Prove that the objective function of soft SVM is convex,
+\[
+\frac{1}{2}\w^\top\w + C\sum_{i} \max\big(0, 1 - y_i(\w^\top\x_i+b)\big).
+\]
+
+\item~[10 points] Illustrate how the Occam's Razor's principle is reflected in SVM objective function and optimization. 
+
+
+%calculate the subgradient
+\item~[30 points] Suppose we have the following training dataset. We want to learn a SVM classifier. We initialize all the model parameters with $0$. We set the learning rates for the first three steps to $\{0.01, 0.005, 0.0025\}$.  Please list the sub-gradients of the SVM objective w.r.t the model parameters for the first three steps, when using the stochastic sub-gradient descent algorithm. 
+\begin{table}[h]
+        \centering
+        \begin{tabular}{ccc|c}
+        $x_1$ & $x_2$ & $x_3$ &  $y$\\ 
+        \hline\hline
+         $0.5$ & $-1$ & $0.3$ & $1$ \\ \hline
+         $-1$ & $-2$ & $-2$ & $-1$\\ \hline
+         $1.5$ & $0.2$ & $-2.5$ & $1$\\ \hline
+        \end{tabular}
+\end{table}
+
+\end{enumerate}
+
+\section{Programming Assignments}
+\begin{enumerate}
+\item We will implement  SVM with stochastic sub-gradient descent. We will reuse the dataset for Perceptron implementation. The features and labels are listed in the file ``classification/data-desc.txt''. The training data are stored in the file ``classification/train.csv'', consisting of $872$ examples. The test data are stored in ``classification/test.csv'', and comprise of $500$ examples. In both the training and testing datasets, feature values and labels are separated by commas. Set the maximum epochs $T$ to 50. Don't forget to shuffle the training examples at the start of each epoch. Use the curve of the objective function (along with the number of updates) to diagnosis the convergence. Try the hyperparameter $C$ from $\{\frac{10}{873}, \frac{100}{873}, \frac{300}{873}, \frac{500}{873,} \frac{700}{873}\}$. Don't forget to convert the labels to be in $\{1, -1\}$.  
+\begin{enumerate}
+\item~[50 points] Use the schedule of learning rate: $\gamma_t = \frac{\gamma_0}{1+\frac{\gamma_0}{d}t}$. Please tune $\gamma_0$ and $d$ to ensure convergence. For each setting of $C$, report your test error. 
+\item~[50 points] Use the schedule $\gamma_t = \frac{\gamma_0}{1+t}$. Report the test error for each setting of C. 
+\item~[20 points] For each $C$, report the differences between the model parameters learned from the two learning rate schedules, as well as the differences between the test errors. What can you conclude? 
+\end{enumerate}
+\end{enumerate}
+
+\end{document}
+%%% Local Variables:
+%%% mode: latex
+%%% TeX-master: t
+%%% End:
