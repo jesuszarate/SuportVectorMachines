@@ -1,7 +1,6 @@
 import os
 import sys
 
-
 def computeTrueCase(filename, output_file='output_files'):
     log = ''
     try:
@@ -30,6 +29,7 @@ if __name__ == '__main__':
     if len(sys.argv) > 2:
         print('Too many arguments provided')
         exit()
+    print(os.getcwd())
     if not os.path.exists(sys.argv[1]):
         print('Tex file you provided does not exist.')
         exit()

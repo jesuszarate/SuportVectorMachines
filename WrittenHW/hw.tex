@@ -6,6 +6,8 @@
 \usepackage{amssymb}
 \usepackage{xspace}
 \usepackage{graphicx}
+\graphicspath{ {Images/} }
+
 
 \newcommand{\semester}{Spring 2018}
 \newcommand{\assignmentId}{4}
@@ -29,13 +31,62 @@
 
 \section{VC dimension}
 \begin{enumerate}
-\item~[25] Suppose we have a finite hypothesis space $\Hcal$.
+\item~[25] Suppose we have a finite hypothesis space $H$%$\Hcal$.
 \begin{enumerate}
-\item~[10] Suppose $|\Hcal| = 2^{10}$. What is the VC dimension of $\Hcal$? 
-\item~[15] Generally, for  any finite $\Hcal$, what is $\mathrm{VC}(\Hcal)$ ?
+%\item~[10] Suppose $|\Hcal| = 2^{10}$. What is the VC dimension of %$\Hcal$?
+\item~[10] Suppose $|H| = 2^{10}$. What is the VC dimension of $H$?
+
+    $\mathrm{VC}(H) <= \log_2(2^{10}) = 10$\\
+
+%\item~[15] Generally, for  any finite $\Hcal$, what is $\mathrm{VC}(\Hcal)$ ?
+\item~[15] Generally, for  any finite $H$, what is $\mathrm{VC}(H)$ ?
+
+    $\mathrm{VC}(H) <= \log_2(|H|)$
+
 \end{enumerate}
-\item~[25] Prove that linear classifiers in a plane cannot shatter any $4$ distinct points. 
-\item~[20] Consider our infinite hypothesis space $\Hcal$ are all rectangles in a plain. Each rectangle corresponds to a classifier --- all the points inside the rectangle are classified as positive, and otherwise classified as negative. What is $\mathrm{VC}(\Hcal)$? 
+\item~[25] Prove that linear classifiers in a plane cannot shatter any $4$ distinct points.
+
+    To show this we have to show that for any positioning of the points an adversarial can label the points in
+    such a way that they cannot be shattered.
+
+    In order to show we must show all the possible cases.
+
+    \pagebreak
+    \begin{enumerate}
+
+    \item For case 1 where 3 points are in a line, and the $4th$ point can be anywhere. In this case when three points are in
+    a line no matter where the other point is there is always a labeling that will not shatter the positioning.
+
+    \begin{figure}[h]
+        \centering
+        \includegraphics[scale=.5]{all_in_line.png}
+    \end{figure}
+
+
+    \item Then there is the second case where 3 points are not in a line, and there is two other cases that fall into
+    this category.
+        \begin{enumerate}
+            \item Where the $4th$ point is anywhere inside a triangle of the other 3 points.
+            \begin{figure}[h]
+                \centering
+                \includegraphics[scale=.5]{inside_triangle.png}
+            \end{figure}
+            \item Where the $4th$ point is anywhere outside of the triangle
+            \begin{figure}[h]
+                \centering
+                \includegraphics[scale=.5]{not_in_triangle.png}
+            \end{figure}
+        \end{enumerate}
+    \end{enumerate}
+
+    Since all of these are all the possible configurations we can have of the points then we can say conclude that
+    lenear classifires in a plane cannot shatter any 4 distinct points.
+
+
+
+%\item~[20] Consider our infinite hypothesis space $\Hcal$ are all rectangles in a plain. Each rectangle corresponds to a classifier --- all the points inside the rectangle are classified as positive, and otherwise classified as negative. What is $\mathrm{VC}(\Hcal)$?
+\item~[20] Consider our infinite hypothesis space $H$ are all rectangles in a plain. Each rectangle corresponds to a classifier --- all the points inside the rectangle are classified as positive, and otherwise classified as negative. What is $\mathrm{VC}(H)$?\\
+Infinity
 \end{enumerate}
 
 \section{Support Vector Machines}
