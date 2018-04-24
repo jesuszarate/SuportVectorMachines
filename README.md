@@ -1,1 +1,3 @@
 # SuportVectorMachines
+
+Run ./run.sh

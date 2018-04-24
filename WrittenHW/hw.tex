@@ -7,6 +7,7 @@
 \usepackage{xspace}
 \usepackage{graphicx}
 \graphicspath{ {Images/} }
+\DeclareMathOperator{\Hcal}{\mathcal{H}}
 
 
 \newcommand{\semester}{Spring 2018}
@@ -118,9 +119,116 @@ Infinity
 \begin{enumerate}
 \item We will implement  SVM with stochastic sub-gradient descent. We will reuse the dataset for Perceptron implementation. The features and labels are listed in the file ``classification/data-desc.txt''. The training data are stored in the file ``classification/train.csv'', consisting of $872$ examples. The test data are stored in ``classification/test.csv'', and comprise of $500$ examples. In both the training and testing datasets, feature values and labels are separated by commas. Set the maximum epochs $T$ to 50. Don't forget to shuffle the training examples at the start of each epoch. Use the curve of the objective function (along with the number of updates) to diagnosis the convergence. Try the hyperparameter $C$ from $\{\frac{10}{873}, \frac{100}{873}, \frac{300}{873}, \frac{500}{873,} \frac{700}{873}\}$. Don't forget to convert the labels to be in $\{1, -1\}$.  
 \begin{enumerate}
-\item~[50 points] Use the schedule of learning rate: $\gamma_t = \frac{\gamma_0}{1+\frac{\gamma_0}{d}t}$. Please tune $\gamma_0$ and $d$ to ensure convergence. For each setting of $C$, report your test error. 
-\item~[50 points] Use the schedule $\gamma_t = \frac{\gamma_0}{1+t}$. Report the test error for each setting of C. 
-\item~[20 points] For each $C$, report the differences between the model parameters learned from the two learning rate schedules, as well as the differences between the test errors. What can you conclude? 
+\item~[50 points] Use the schedule of learning rate: $\gamma_t = \frac{\gamma_0}{1+\frac{\gamma_0}{d}t}$. Please tune $\gamma_0$ and $d$ to ensure convergence. For each setting of $C$, report your test error.\\
+
+$C = \frac{10}{873}$\\
+Accuracy testing: $0.9639278557114228$\\
+Test error = $0.03607214428857719\\ $
+
+
+$C = \frac{100}{873}$\\
+Accuracy testing: $0.9879759519038076$\\
+Test error = $0.012024048096192397\\ $
+
+
+$C = \frac{300}{873}$\\
+Accuracy testing: $0.9879759519038076$\\
+Test error = $0.012024048096192397\\ $
+
+
+$C = \frac{500}{873}$\\
+Accuracy testing: $0.9879759519038076$\\
+Test error = $0.012024048096192397\\ $
+
+
+$C = \frac{700}{873}$\\
+Accuracy testing: $0.9859719438877755$\\
+Test error = $0.014028056112224463\\ $
+
+
+\item~[50 points] Use the schedule $\gamma_t = \frac{\gamma_0}{1+t}$. Report the test error for each setting of C.
+
+$C = \frac{10}{873}$\\
+Accuracy testing: $0.9639278557114228$\\
+Test error = $0.03607214428857719\\ $
+
+
+$C = \frac{100}{873}$\\
+Accuracy testing: $0.9879759519038076$\\
+Test error = $0.012024048096192397\\ $
+
+
+$C = \frac{300}{873}$\\
+Accuracy testing: $0.9879759519038076$\\
+Test error = $0.012024048096192397\\ $
+
+
+$C = \frac{500}{873}$\\
+Accuracy testing: $0.9879759519038076$\\
+Test error = $0.012024048096192397\\ $
+
+
+$C = \frac{700}{873}$\\
+Accuracy testing: $0.9859719438877755$\\
+Test error = $0.014028056112224463\\ $
+
+\item~[20 points] For each $C$, report the differences between the model parameters learned from the two learning rate schedules, as well as the differences between the test errors. What can you conclude?
+
+
+$C = \frac{10}{873}$\\
+Model Parameters: $\frac{\gamma_0}{1+\frac{\gamma_0}{d}t}$ and
+$\frac{\gamma_0}{1+t}$
+
+$[-25288.5887076, -15063.8240872, -16022.5625078, -2782.24411486, 27386.1415048]$\\
+$[-21325.0217736, -10889.112699, -10492.8624735, -3512.49220633, 8911.99304415]$\\
+
+$\frac{\gamma_0}{1+\frac{\gamma_0}{d}t} = 0.987975951904$\\
+$\frac{\gamma_0}{1+t} = 0.963927855711$\\
+
+$C = \frac{100}{873}$\\
+Model Parameters: $\frac{\gamma_0}{1+\frac{\gamma_0}{d}t}$ and
+$\frac{\gamma_0}{1+t}$
+
+$[-52441.4926675, -36188.5609245, -38209.6769276, -10145.7203947, 58579.8787385]$\\
+$[-32492.0416935, -21117.4124267, -21532.6932631, -5031.71006657, 32825.5843357]$\\
+
+$\frac{\gamma_0}{1+\frac{\gamma_0}{d}t} = 0.98997995992$\\
+$\frac{\gamma_0}{1+t} = 0.987975951904$\\
+
+$C = \frac{300}{873}$\\
+Model Parameters: $\frac{\gamma_0}{1+\frac{\gamma_0}{d}t}$ and
+$\frac{\gamma_0}{1+t}$
+
+$[-110346.392081, -75928.2314648, -78133.2954785, -27554.3258578, 104358.914249]$\\
+$[-45287.1509343, -30057.5965674, -32806.9801795, -7789.72628667, 43844.6231866]$\\
+
+$\frac{\gamma_0}{1+\frac{\gamma_0}{d}t} = 0.985971943888$\\
+$\frac{\gamma_0}{1+t} = 0.987975951904$\\
+
+$C = \frac{500}{873}$\\
+Model Parameters: $\frac{\gamma_0}{1+\frac{\gamma_0}{d}t}$ and
+$\frac{\gamma_0}{1+t}$
+
+$[-158098.660428, -112712.633892, -115071.502339, -50226.2395035, 143474.365839]$\\
+$[-60703.5318481, -39702.8592759, -44171.35262, -12975.570726, 52167.76998]$\\
+
+$\frac{\gamma_0}{1+\frac{\gamma_0}{d}t} = 0.985971943888$\\
+$\frac{\gamma_0}{1+t} = 0.987975951904$\\
+
+$C = \frac{700}{873}$\\
+Model Parameters: $\frac{\gamma_0}{1+\frac{\gamma_0}{d}t}$ and
+$\frac{\gamma_0}{1+t}$
+
+$[-209124.451871, -144252.562456, -149288.400186, -59164.1727278, 185618.815655]$\\
+$[-78860.6395292, -52367.748611, -57456.4070289, -19013.9104801, 61452.5135766]$\\
+
+$\frac{\gamma_0}{1+\frac{\gamma_0}{d}t} = 0.985971943888$\\
+$\frac{\gamma_0}{1+t} = 0.985971943888$\\
+
+
+When $C$ is smaller the accuracy seemed to be less accurate, but as it got higher it did better.
+We know that $C = \infinity$ overfits the data, meaning that in our case when $C$ got bigger it fit the data better.
+
 \end{enumerate}
 \end{enumerate}
 
