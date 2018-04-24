@@ -97,8 +97,24 @@ Infinity
 \frac{1}{2}\w^\top\w + C\sum_{i} \max\big(0, 1 - y_i(\w^\top\x_i+b)\big).
 \]
 
+If we consider:\\
+$\nabla J(w) = w $ If $\rightarrow \max(0, 1-y_i w x_i) = 0$\\
+$\nabla J(w) = w - C * N * y_i x_i$ If $\rightarrow otherwise$
+
+If we take $\nabla^2 J(w)$ of both of these we get:\\
+
+$\nabla^2 J(w) = 1$\\
+$\nabla^2 J(w) = 1$\\
+
+Hence since $\nabla^2 J(w) = 1 > 0$ then $J(w)$ is convex.
+
 \item~[10 points] Illustrate how the Occam's Razor's principle is reflected in SVM objective function and optimization. 
 
+The objective function includes the regularization penalty, which prevents the weights
+ from getting too large.
+Occam's razor states that we must find the simplest
+hypothesis to explain the data, and with the SVM objective function it is measured
+in terms of \textbf{w}
 
 %calculate the subgradient
 \item~[30 points] Suppose we have the following training dataset. We want to learn a SVM classifier. We initialize all the model parameters with $0$. We set the learning rates for the first three steps to $\{0.01, 0.005, 0.0025\}$.  Please list the sub-gradients of the SVM objective w.r.t the model parameters for the first three steps, when using the stochastic sub-gradient descent algorithm. 
@@ -112,6 +128,51 @@ Infinity
          $1.5$ & $0.2$ & $-2.5$ & $1$\\ \hline
         \end{tabular}
 \end{table}
+
+I used the following values for C, and N and bias b:\\
+$C = 1$\\
+$N = 3$\\
+$b = 1$
+%$\nabla$
+
+$w \leftarrow (1 - 0.01)([0.0150,-0.0300,0.0090,0.0300]) + [0.0150,-0.0300,0.0090,0.0300]*1*3*1*[0.5000,-1.0000,0.3000,1.0000]$\\
+$\nabla J^0 = [0.0000,0.0000,0.0000,0.0000] - 1*(3*1) = [0.5000,-1.0000,0.3000,1.0000]$\\
+$w \leftarrow [0.0000,0.0000,0.0000,0.0000]$\\
+
+$w \leftarrow (1 - 0.01)([0.0449,0.0303,0.0689,-0.0003]) + [0.0449,0.0303,0.0689,-0.0003]*1*3*-1*[-1.0000,-2.0000,-2.0000,1.0000]$\\
+$\nabla J^0 = [0.0150,-0.0300,0.0090,0.0300] - 1*(3*-1) = [-1.0000,-2.0000,-2.0000,1.0000]$\\
+$w \leftarrow [0.0150,-0.0300,0.0090,0.0300]$\\
+
+$w \leftarrow (1 - 0.01)([0.0894,0.0360,-0.0068,0.0297]) + [0.0894,0.0360,-0.0068,0.0297]*1*3*1*[1.5000,0.2000,-2.5000,1.0000]$\\
+$\nabla J^0 = [0.0599,0.0003,0.0779,0.0297] - 1*(3*1) = [1.5000,0.2000,-2.5000,1.0000]$\\
+$w \leftarrow [0.0599,0.0003,0.0779,0.0297]$\\
+
+$w \leftarrow (1 - 0.005)([0.0965,0.0208,-0.0022,0.0446]) + [0.0965,0.0208,-0.0022,0.0446]*1*3*1*[0.5000,-1.0000,0.3000,1.0000]$\\
+$\nabla J^1 = [0.1493,0.0363,0.0711,0.0594] - 1*(3*1) = [0.5000,-1.0000,0.3000,1.0000]$\\
+$w \leftarrow [0.1493,0.0363,0.0711,0.0594]$\\
+
+$w \leftarrow (1 - 0.005)([0.1110,0.0507,0.0278,0.0293]) + [0.1110,0.0507,0.0278,0.0293]*1*3*-1*[-1.0000,-2.0000,-2.0000,1.0000]$\\
+$\nabla J^1 = [0.2457,0.0571,0.0689,0.1040] - 1*(3*-1) = [-1.0000,-2.0000,-2.0000,1.0000]$\\
+$w \leftarrow [0.2457,0.0571,0.0689,0.1040]$\\
+
+$w \leftarrow (1 - 0.005)([0.1329,0.0535,-0.0099,0.0442]) + [0.1329,0.0535,-0.0099,0.0442]*1*3*1*[1.5000,0.2000,-2.5000,1.0000]$\\
+$\nabla J^1 = [0.3567,0.1078,0.0967,0.1333] - 1*(3*1) = [1.5000,0.2000,-2.5000,1.0000]$\\
+$w \leftarrow [0.3567,0.1078,0.0967,0.1333]$\\
+
+$w \leftarrow (1 - 0.0025)([0.1363,0.0458,-0.0076,0.0516]) + [0.1363,0.0458,-0.0076,0.0516]*1*3*1*[0.5000,-1.0000,0.3000,1.0000]$\\
+$\nabla J^2 = [0.4896,0.1613,0.0868,0.1775] - 1*(3*1) = [0.5000,-1.0000,0.3000,1.0000]$\\
+$w \leftarrow [0.4896,0.1613,0.0868,0.1775]$\\
+
+$w \leftarrow (1 - 0.0025)([0.1435,0.0607,0.0074,0.0439]) + [0.1435,0.0607,0.0074,0.0439]*1*3*-1*[-1.0000,-2.0000,-2.0000,1.0000]$\\
+$\nabla J^2 = [0.6259,0.2071,0.0792,0.2290] - 1*(3*-1) = [-1.0000,-2.0000,-2.0000,1.0000]$\\
+$w \leftarrow [0.6259,0.2071,0.0792,0.2290]$\\
+
+$w \leftarrow (1 - 0.0025)([0.1431,0.0606,0.0074,0.0438])$\\
+$\nabla J^2 = [0.1431,0.0606,0.0074,0.0438]$\\
+$w \leftarrow [0.1431,0.0606,0.0074,0.0438]$\\
+
+
+\textbf{Final w}: $[0.1431,0.0606,0.0074,0.0438]$\\
 
 \end{enumerate}
 
@@ -227,7 +288,10 @@ $\frac{\gamma_0}{1+t} = 0.985971943888$\\
 
 
 When $C$ is smaller the accuracy seemed to be less accurate, but as it got higher it did better.
-We know that $C = \infinity$ overfits the data, meaning that in our case when $C$ got bigger it fit the data better.
+We know that $C = infinity$ overfits the data, meaning that in our case when $C$ got bigger it fit the data better.
+
+%The weight vectors of the $\frac{\gamma_0}{1+\frac{\gamma_0}{d}t}$ also contain
+%longer amount of digits.
 
 \end{enumerate}
 \end{enumerate}

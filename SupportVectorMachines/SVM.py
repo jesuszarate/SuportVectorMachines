@@ -31,7 +31,7 @@ class SVM:
 
                 yi = ypd[t] if ypd[t] == 1 else -1
 
-                if yi * np.dot(np.transpose(_w), np.array(xi)) <= 1:
+                if yi * np.dot(np.transpose(w), np.array(xi)) <= 1:
                     _w = (1-rLearn(r, t, d))*(_w) + rLearn(r, t, d) * N * c * yi * np.array(xi)
                 else:
                     _w = (1-rLearn(r, t, d))*_w
@@ -70,7 +70,7 @@ if __name__ == "__main__":
     dt = readData(sys.argv[1])#('../dataset-hw2/classification/train.csv')
     test_dt = readData(sys.argv[2])#('../dataset-hw2/classification/test.csv')
 
-    funcs = []#[rt0, rt1]
+    funcs = [rt0, rt1]
     for _func in funcs:
         for c in C:
             svm = SVM()
@@ -107,8 +107,3 @@ if __name__ == "__main__":
         print('$\\frac{\gamma_0}{1+\\frac{\gamma_0}{d}t} = ' + str(acc1) + '$\\\ ')
         print('$\\frac{\gamma_0}{1+t} = ' + str(acc2) + '$\\\ ')
         print()
-
-        # print ("Weights: ${0}$ \\\ ".format(w))
-        # print ("Accuracy testing: ${0}$\\\ ".format(acc))
-        # print ("Test error = ${0}\\\ $".format(1-acc))
-        # print('\n')
